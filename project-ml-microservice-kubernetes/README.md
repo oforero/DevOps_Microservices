@@ -1,5 +1,5 @@
 <include a CircleCI status badge, here>
-
+![Circle CI](circleci.png)
 
 # Image in Docker:
 https://hub.docker.com/repository/docker/oforero/udacity-aws-ml
