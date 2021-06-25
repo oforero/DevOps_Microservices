@@ -22,6 +22,4 @@ EXPOSE 80
 
 ## Step 5:
 # Run app.py at container launch
-CMD [ "find", ".", "-iname", "app.py" ]
-CMD [ "ls", "model_data" ]
 CMD [ "python", "app.py" ]
