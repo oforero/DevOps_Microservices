@@ -18,16 +18,15 @@ jobs:
             pwd
             ls -al
       - restore_cache:
-          working_directory: /root/DevOps_Microservices/project-ml-microservice-kubernetes
           keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
+            - v1-dependencies-{{ checksum "project-ml-microservice-kubernetes/requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run:
           name: install dependencies
-          working_directory: /root/DevOps_Microservices/project-ml-microservice-kubernetes
           command: |
+            cd project-ml-microservice-kubernetes
             python3 -m venv venv
             . venv/bin/activate
             make install
@@ -36,15 +35,14 @@ jobs:
             chmod +x /bin/hadolint
 
       - save_cache:
-          working_directory: /root/DevOps_Microservices/project-ml-microservice-kubernetes
           paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements.txt" }}
+            - ./project-ml-microservice-kubernetes/venv
+          key: v1-dependencies-{{ checksum "project-ml-microservice-kubernetes/requirements.txt" }}
 
       # run lint!
       - run:
           name: run lint
-          working_directory: /root/DevOps_Microservices/project-ml-microservice-kubernetes
           command: |
+            cd project-ml-microservice-kubernetes
             . venv/bin/activate
             make lint 
