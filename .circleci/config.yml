@@ -6,13 +6,18 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/repo/project-ml-microservice-kubernetes/
+    working_directory: /root/DevOps_Microservices/project-ml-microservice-kubernetes
     docker:
       # Use the same Docker base as the project
       - image: python:3.7.3-stretch
     steps:
       - checkout
       # Download and cache dependencies
+      - run:
+          name: Checks
+          command: |
+            pwd
+            ls -al
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "requirements.txt" }}
